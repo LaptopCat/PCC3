@@ -35,12 +35,6 @@ FILE_STORAGE = f"https://{SERVER}/api/storage/pc-creator-two/Localizations/produ
 HTTP_HEADERS = {"User-Agent": "UnityPlayer/2022.3.14f1 (UnityWebRequest/1.0, libcurl/7.80.0-DEV)", "X-Unity-Version": "2022.3.14f1"}
 WS_HEADERS = {"User-Agent": "websocket-sharp/1.0"}
 
-PUBLIC_PROMOCODE_LIST = [
-  "X2XKEY",
-  "R5RKEY",
-  "LNY024",
-  "1MARCH"
-]
 LEADERBOARDS = {
   "PC Score": "PCPower",
   "Bitcoin": "BTC",
