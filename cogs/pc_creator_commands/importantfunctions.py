@@ -203,6 +203,6 @@ async def live_check(index, item, checks, response):
   definition = definitions[item]
   data = await checker_wrapper(definition["check"]())
   checks[index] = format_msg(item, data)
-  await response.edit_original_message(
+  await response.edit_original_response(
     embed=Embed(title="Status", description=''.join(checks).strip()))
   return
