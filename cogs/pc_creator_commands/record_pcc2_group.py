@@ -10,6 +10,7 @@ ICONS = {
     "Bitcoin": "<:Bitcoin:728463949892419624>",
     "Ethereum": "<:ethereum:932746985751076864>"
 }
+inv_skill = [0, 25, 55, 100, 150, 200, 300] # increase of inventory space with the skill level (skill level 6 -> +300 space and etc)
 pc_item_keys = ["PcCases", "MotherBoards", "CPUs", "Videocards", "Drives", "PowerSuppllies", "Coolers"]
 staff_ids = [1056941196196458507, 648546626637398046, 589435378147262464, 1058779237168992286, 697728131003580537, 697002610892341298, 1208540296527482890]
 
@@ -166,7 +167,15 @@ def inspect_embed(account):
 
     vip = account["accountInfo"]["hasSubscription"]
     visual_inventory = list(filter(lambda a: items.get(a["id"], Rarity.Gold.value) != Rarity.Gold.value, account["inventory"]["itemReferences"]))
-    item_limit = 5000 if vip else 500
+    item_limit = 100 if account.get("hasNewInventorySystem") else 500
+    invskill = account["userSkills"].get("InventoryCapacity", 0)
+    if invskill > 6:
+        invskill = 6
+    
+    item_limit += inv_skill[invskill]
+    if vip:
+        item_limit *= 10
+    
     e.add_field(name="Level", value=account["level"], inline=False)
     e.add_field(name="Playtime", value=f'{format_time(account["playTime"])} ({account["playTime"]})', inline=False)
 
